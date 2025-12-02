@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useWallet } from "./WalletProvider";
 import "./TicTacToe.css";
 
 const initialBoard: (string | null)[] = Array(9).fill(null);
 
-export default function TicTacToe() {
-  const { wallets, selectedWallet, isReady, connect, disconnect } = useWallet();
+  // ...existing code...
 
   const [board, setBoard] = useState(initialBoard);
   const [isXNext, setIsXNext] = useState(true);
@@ -44,28 +42,6 @@ export default function TicTacToe() {
   return (
     <div className="container">
       <h1>Tic Tac Toe</h1>
-      {/* Wallet connection UI */}
-      {!isReady ? (
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ marginBottom: 8 }}>Connect a wallet to play:</div>
-          {wallets.length === 0 && <div>No wallets detected.</div>}
-          {wallets.map((w) => (
-            <button
-              key={w.info.uuid}
-              onClick={() => connect(w)}
-              style={{ margin: 4 }}
-            >
-              <img src={w.info.icon} alt={w.info.name} style={{ width: 20, height: 20, verticalAlign: "middle", marginRight: 6 }} />
-              {w.info.name}
-            </button>
-          ))}
-        </div>
-      ) : (
-        <div style={{ marginBottom: 16 }}>
-          Connected: {selectedWallet?.info.name}
-          <button style={{ marginLeft: 12 }} onClick={disconnect}>Disconnect</button>
-        </div>
-      )}
       <div className="status">
         {winner ? `Winner: ${winner}` : `Next Player: ${isXNext ? "X" : "O"}`}
       </div>
