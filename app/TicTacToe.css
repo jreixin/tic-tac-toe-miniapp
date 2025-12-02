@@ -3,15 +3,41 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+
 .container {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
   background: #f8f8f8;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+  }
+  .board {
+    grid-template-columns: repeat(3, 60px);
+    grid-gap: 6px;
+  }
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  .reset {
+    padding: 8px 14px;
+    font-size: 0.95rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .status {
+    font-size: 1rem;
+  }
 }
 
 .board {

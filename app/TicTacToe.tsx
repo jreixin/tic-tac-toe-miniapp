@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./TicTacToe.css";
 
 const initialBoard: (string | null)[] = Array(9).fill(null);
 
 export default function TicTacToe() {
+
   const [board, setBoard] = useState(initialBoard);
   const [isXNext, setIsXNext] = useState(true);
   const winner = calculateWinner(board);
+
+  // Sound refs
+  const xAudioRef = useRef<HTMLAudioElement>(null);
+  const oAudioRef = useRef<HTMLAudioElement>(null);
+
 
   const handleClick = (index: number) => {
     if (board[index] || winner) return;
@@ -17,6 +23,15 @@ export default function TicTacToe() {
     newBoard[index] = isXNext ? "X" : "O";
     setBoard(newBoard);
     setIsXNext(!isXNext);
+
+    // Play sound effect
+    if (isXNext && xAudioRef.current) {
+      xAudioRef.current.currentTime = 0;
+      xAudioRef.current.play();
+    } else if (!isXNext && oAudioRef.current) {
+      oAudioRef.current.currentTime = 0;
+      oAudioRef.current.play();
+    }
   };
 
   const resetGame = () => {
@@ -40,6 +55,9 @@ export default function TicTacToe() {
       <button className="reset" onClick={resetGame}>
         Restart
       </button>
+      {/* Sound effects */}
+      <audio ref={xAudioRef} src="/x-sound.mp3" preload="auto" />
+      <audio ref={oAudioRef} src="/o-sound.mp3" preload="auto" />
     </div>
   );
 }
