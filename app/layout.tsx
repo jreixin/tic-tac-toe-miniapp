@@ -1,6 +1,7 @@
 
 import "./globals.css";
 import { ReactNode } from "react";
+import { RootProvider } from "./rootProvider";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -19,10 +20,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="twitter:image" content="https://tic-tac-toe-miniapp-pearl.vercel.app/blue-hero.png" />
       </head>
       <body>
-        {/* Uncomment and wrap with MiniKitProvider if using Base features */}
-        {/* <MiniKitProvider> */}
+        <RootProvider>
           {children}
-        {/* </MiniKitProvider> */}
+        </RootProvider>
       </body>
     </html>
   );
