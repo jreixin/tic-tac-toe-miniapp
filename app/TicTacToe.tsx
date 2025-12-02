@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+"use client";
 
-const initialBoard = Array(9).fill(null);
+import { useState } from "react";
+import "./TicTacToe.css";
 
-const App = () => {
+const initialBoard: (string | null)[] = Array(9).fill(null);
+
+export default function TicTacToe() {
   const [board, setBoard] = useState(initialBoard);
   const [isXNext, setIsXNext] = useState(true);
   const winner = calculateWinner(board);
 
-  const handleClick = (index) => {
+  const handleClick = (index: number) => {
     if (board[index] || winner) return;
+
     const newBoard = [...board];
     newBoard[index] = isXNext ? "X" : "O";
     setBoard(newBoard);
@@ -38,10 +42,11 @@ const App = () => {
       </button>
     </div>
   );
-};
+}
 
-function calculateWinner(b) {
-  const lines = [
+// Linter-friendly calculateWinner function
+function calculateWinner(b: (string | null)[]) {
+  const lines: number[][] = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -51,10 +56,9 @@ function calculateWinner(b) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let [a, bIdx, c] of lines) {
+
+  for (const [a, bIdx, c] of lines) {
     if (b[a] && b[a] === b[bIdx] && b[a] === b[c]) return b[a];
   }
   return null;
 }
-
-export default App;
