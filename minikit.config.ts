@@ -27,10 +27,12 @@ export const minikitConfig = {
     primaryCategory: "games",
     tags: ["classic", "game", "puzzle"],
     heroImageUrl: `${ROOT_URL}/blue-hero.png`, 
-    tagline: "",
-    ogTitle: "",
-    ogDescription: "",
+    tagline: "Play Tic Tac Toe",
+    ogTitle: "Tic Tac Toe",
+    ogDescription: "Play Tic Tac Toe",
     ogImageUrl: `${ROOT_URL}/blue-hero.png`,
+    imageUrl: `${ROOT_URL}/blue-hero.png`,
+    noindex: false,
   },
 } as const;
 
