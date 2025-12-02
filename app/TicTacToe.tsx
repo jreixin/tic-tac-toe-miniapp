@@ -5,8 +5,7 @@ import "./TicTacToe.css";
 
 const initialBoard: (string | null)[] = Array(9).fill(null);
 
-  // ...existing code...
-
+export default function TicTacToe() {
   const [board, setBoard] = useState(initialBoard);
   const [isXNext, setIsXNext] = useState(true);
   const winner = calculateWinner(board);
@@ -14,7 +13,6 @@ const initialBoard: (string | null)[] = Array(9).fill(null);
   // Sound refs
   const xAudioRef = useRef<HTMLAudioElement>(null);
   const oAudioRef = useRef<HTMLAudioElement>(null);
-
 
   const handleClick = (index: number) => {
     if (board[index] || winner) return;
