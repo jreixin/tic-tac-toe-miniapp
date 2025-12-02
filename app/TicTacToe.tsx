@@ -44,7 +44,6 @@ export default function TicTacToe() {
   );
 }
 
-// Linter-friendly calculateWinner function
 function calculateWinner(b: (string | null)[]) {
   const lines: number[][] = [
     [0, 1, 2],
